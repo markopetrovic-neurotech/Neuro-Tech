@@ -1,0 +1,770 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,300;0,400;0,600;1,400&display=swap');
+
+
+/* 
+
+    CSS TABLE OF CONTENTS
+
+    1.0 - Variables
+    2.0 - Resets
+    3.0 - Colors: attributes
+
+
+/* =======================================  START: COMPONENTS  ================================================= */
+
+    *,
+    *::before,
+    *::after {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        outline: none;
+        border: none;
+        text-decoration: none;
+        transition: all .2s linear;
+    }
+
+    // Colors
+    $blue: #29d9d5;
+    $black: #111;
+    $white: #fff;
+    $light-color: rgb(231, 231, 231);
+    $bg-color: rgba(0, 0, 0, 0.795);
+    $black-bg: rgba(39, 38, 38, 0.543);
+    $border: .2rem solid $blue;
+
+
+    @mixin grid($val) {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax($val, 1fr));
+        gap: 1.5rem;
+    }
+
+    html {
+        font-size: 62.5%;
+        overflow-x: hidden;
+        scroll-behavior: smooth;
+        scroll-padding-top: 9rem;
+        font-family: 'Poppins', sans-serif;
+
+        &::-webkit-scrollbar {
+            width: 1rem;
+        }
+
+        &::-webkit-scrollbar-track {
+            background: $black-bg;
+        }
+
+        &::-webkit-scrollbar-thumb {
+            background: $blue;
+        }
+    }
+
+    a {
+        text-decoration: none;
+    }
+
+    ul {
+        list-style: none;
+    }
+
+    section {
+        padding: 10rem 4%;
+    }
+
+    body {
+        background: #000;
+        overflow-x: hidden;
+    }
+
+    .heading {
+        text-align: center;
+        margin-bottom: 2rem;
+
+        span {
+            color: $blue;
+            font-size: 2rem;
+        }
+
+        h1 {
+            font-size: 4rem;
+            color: $white;
+        }
+    }
+
+    .btn {
+        margin-top: 1rem;
+        display: inline-block;
+        padding: 1rem 3rem;
+        font-size: 1.7rem;
+        color: $blue;
+        border: $border;
+        border-radius: 5rem;
+        cursor: pointer;
+        background: none;
+
+        &:hover {
+            background: $blue;
+            color: $black;
+        }
+    }
+
+
+/* =======================================  END: COMPONENTS  ================================================== */
+
+/* =======================================  START: HEADER SECTION ============================================= */
+
+    .header {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        display: -ms-flexbox;
+        -ms-flex-align: center;
+        -ms-flex-pack: justify;
+        width: 100%;
+    }
+
+    .container {
+        width: 100%;
+        max-width: 100%;
+        margin: 0 auto;
+        padding: 0 1.5rem;
+    }
+
+    .menu-icons {
+        color: #eee;
+        font-size: 4rem;
+        position: absolute;
+        top: 50%;
+        right: 2rem;
+        transform: translateY(-50%);
+        cursor: pointer;
+        z-index: 1500;
+        display: none;
+    }
+
+    nav {
+        display: flex;
+        align-items: center;
+        width: 100%;
+        height: 8rem;
+        border-bottom: 1px solid rgba(255, 255, 255, .1);
+    }
+
+    .header-logo {
+        width: 5rem;
+        height: 5rem;
+        background-color: #07baeb;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 110%;
+        margin-right: 5rem;
+    }
+
+    .nav-list {
+        display: flex;
+        width: 100%;
+        align-items: center;
+    }
+
+    .nav-list li {
+        line-height: 8rem;
+        position: relative;
+    }
+
+    .sub-menu li {
+        line-height: 4rem;
+    }
+
+    .nav-list a {
+        display: block;
+        color: #eee;
+        padding: 0 1.5rem;
+        font-size: 1.4rem;
+        text-transform: uppercase;
+        transition: color 650ms;
+    }
+
+    .nav-list a:hover {
+        color: #07dceb;
+    }
+
+    .sub-menu {
+        width: 20rem;
+        display: block;
+        position: absolute;
+        border-top: 3px solid #07dceb;
+        background-color: #0b0a0a;
+        z-index: 100;
+        top: 16rem;
+        opacity: 0;
+        visibility: hidden;
+        transition: all 650ms ease;
+    }
+
+    .sub-menu::before {
+        content: "";
+        position: absolute;
+        top: -2.5rem;
+        left: 3rem;
+        border: 1.2rem solid transparent;
+        border-bottom-color: #07dceb;
+    }
+
+    .sub-menu .sub-menu::before {
+        top: .9rem;
+        left: -2.5rem;
+        border: 1.2rem solid transparent;
+        border-right-color: #07dceb;
+    }
+
+    .sub-menu .sub-menu {
+        border-top: none;
+        border-left: 3px solid #07dceb;
+        top: 0;
+        left: 100%;
+    }
+
+    .nav-list li:hover>.sub-menu {
+        top: 8rem;
+        opacity: 1;
+        visibility: visible;
+        max-height: initial;
+    }
+
+    .sub-menu li:hover>.sub-menu {
+        top: 0;
+        left: 100%;
+    }
+
+    li.move-right {
+        margin: auto 0 auto auto;
+        line-height: initial;
+    }
+
+    @media screen and (max-width: 850px) {
+        .nav-list {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 100vh;
+            flex-direction: column;
+            align-items: initial;
+            display: none;
+            background-color: #000000e2;
+            z-index: 1000;
+            overflow-y: scroll;
+        }
+
+        .nav-list>li {
+            line-height: 6rem;
+        }
+
+        .sub-menu {
+            position: initial;
+            border: 3px solid transparent;
+            border-left-color: #1cb5c0;
+            margin-left: 1rem;
+            max-height: 0;
+        }
+
+        .sub-menu::before {
+            display: none;
+        }
+
+        .nav-list li:hover>.sub-menu {
+            opacity: 1;
+            visibility: visible;
+            max-height: initial;
+        }
+
+        li.move-right {
+            margin: 0 auto 0 0;
+            line-height: initial;
+        }
+
+        .menu-icons {
+            display: block;
+        }
+
+        .menu-icons .fa-x {
+            display: block;
+        }
+
+        .menu-icons .fa-x {
+            display: none;
+        }
+
+        nav.active .fa-x {
+            display: block;
+        }
+
+        nav.active .fa-bars {
+            display: none;
+        }
+
+        nav.active .nav-list {
+            display: flex;
+        }
+    }
+
+/* =======================================  END: HEADER SECTION ============================================== */
+
+/* =======================================  START: HOME SECTION ============================================== */
+    .home {
+        margin: 0 auto;
+        margin-top: 9rem;
+        width: 90%;
+        border-radius: 1rem;
+        background: linear-gradient(rgba(0, 0, 0, 0.854), rgba(0, 0, 0, 0.717)), url(../img/synapse.gif) no-repeat;
+        background-size: cover;
+        background-position: center;
+        display: flex;
+        min-height: 80vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding-bottom: 5rem;
+    }
+
+    .home-content {
+        text-align: center;
+
+        h6 {
+            font-size: 2vw;
+            color: $white;
+            line-height: 4;
+        }
+
+        p {
+            max-width: 60rem;
+            margin: 1rem auto;
+            font-size: 1.4rem;
+            color: $light-color;
+            line-height: 2;
+        }
+
+    }
+
+
+/* =======================================  END: HOME SECTION =============================================== */
+
+/* =======================================  START: HEAD-TEAM SECTION ======================================== */
+
+    .team .member {
+        margin-bottom: 20px;
+        overflow: hidden;
+        border-radius: 5px;
+        background: $black-bg;
+    }
+
+    .team .member .member-img {
+        position: relative;
+        overflow: hidden;
+    }
+
+    .team .member .social-icons {
+        position: absolute;
+        left: 0;
+        bottom: 30px;
+        right: 0;
+        opacity: 0;
+        transition: ease-in-out 0.3s;
+        text-align: center;
+    }
+
+    .team .member:hover .social-icons {
+        opacity: 1;
+        bottom: 15px;
+    }
+
+    .team .member .social-icons a {
+        transition: color 0.3s;
+        color: #111111;
+        margin: 0 3px;
+        padding-top: 7px;
+        border-radius: 50px;
+        width: 36px;
+        height: 36px;
+        background: $blue;
+        display: inline-block;
+        transition: ease-in-out 0.3s;
+        color: $white;
+    }
+
+    .team .member .social-icons a:hover {
+        background: #111111;
+    }
+
+    .team .member .social-icons i {
+        font-size: 18px;
+    }
+
+    .team.member .member-info {
+        padding: 25px 15px;
+    }
+
+    .team.member .member-info h4 {
+        font-weight: 700;
+        margin-bottom: 5px;
+        font-size: 18px;
+        color: #111111;
+    }
+
+    .team.member .member-info span {
+        display: block;
+        font-size: 13px;
+        font-weight: 400;
+        color: #aaaaaa;
+    }
+
+    // section 
+    section {
+        padding: 60px 0;
+        overflow: hidden;
+        position: relative;
+    }
+
+    .section-title {
+        text-align: center;
+        padding-bottom: 30px;
+        position: relative;
+    }
+
+    .section-title h2 {
+        font-size: 32px;
+        font-weight: bold;
+        text-transform: uppercase;
+        margin-bottom: 20px;
+        padding-bottom: 20px;
+        position: relative;
+        color: $white;
+    }
+
+    .section-title h2::after {
+        content: "";
+        position: absolute;
+        display: block;
+        width: 50px;
+        height: 3px;
+        background: $blue;
+        bottom: 0;
+        left: calc(50% - 25px);
+    }
+
+    .section-title p {
+        margin-bottom: 0;
+        font-size: 18px;
+    }
+
+    .section-bg {
+        padding: 120px 0;
+        color: $white;
+    }
+
+    .section-bg::before {
+        content: "";
+        background: #1b1b1b;
+        position: absolute;
+        bottom: 60px;
+        top: 60px;
+        left: 0;
+        right: 0;
+        transform: skewY(-3deg);
+    }
+
+    .container {
+        position: relative;
+        z-index: 1;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-wrap: wrap;
+        margin: 10px 0;
+    }
+
+/* =======================================  END: HEAD-TEAM SECTION ============================================ */
+
+
+/* =======================================  START: TEAM SECTION =============================================== */
+    section {
+        position: relative;
+    }
+
+
+
+
+    .team-container {
+        position: relative;
+        z-index: 1;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-wrap: wrap;
+        margin: 40px 0;
+    }
+
+    .team-container .team-card {
+        position: relative;
+        width: 300px;
+        height: 400px;
+        background: rgba(255, 255, 255, 0.05);
+        margin: 20px;
+        box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+        border-radius: 20px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        backdrop-filter: blur(10px);
+    }
+
+    .team-container .team-card .team-content {
+        position: relative;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        opacity: 0.5;
+        transition: 0.5s;
+        color: $white;
+    }
+
+    .team-container .team-card:hover .team-content {
+        opacity: 1;
+        transform: translateY(-20px);
+    }
+
+    .team-container .team-card .team-content .imgBx {
+        position: relative;
+        width: 250px;
+        height: 250px;
+        border-radius: 50%;
+        overflow: hidden;
+        border: 10px solid rgba(0, 0, 0, 0.25);
+    }
+
+    .team-container .team-card .team-content .imgBx img {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+    .team-container .team-card .team-content .team-content .team-contentBx h3 {
+        color: #fff;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        font-weight: 500;
+        font-size: 18px;
+        text-align: center;
+        margin: 20px 0 10px;
+        line-height: 1.1em;
+    }
+
+    .team-container .team-card .team-content .team-content .team-contentBx h3 span {
+        font-size: 12px;
+        font-weight: 300;
+        text-transform: initial;
+    }
+
+    .team-container .team-card .sci {
+        position: absolute;
+        bottom: 20px;
+        display: flex;
+    }
+
+    .team-container .team-card .sci li {
+        list-style: none;
+        margin: 0 10px;
+        transform:  translateY(40px);
+        transition: 0.5s;
+        opacity: 0;
+        transition-delay: calc(0.1s * var(--i));
+    }
+
+    .team-container .team-card:hover .sci li {
+        transform: translateY(0px);
+        opacity: 1;
+    }
+
+    .team-container .team-card .sci li a {
+        color: #fff;
+        font-size: 24px;
+    }
+
+/* =======================================  END: TEAM SECTION ================================================ */
+
+/* =======================================  START: FOOTER SECTION ============================================ */
+
+    .footer {
+        width: 100%;
+        position: relative;
+        bottom: 0;
+        background: linear-gradient(to right, #000, #07304d);
+        color: #fff;
+        padding: 100px 0 30px;
+        border-top-left-radius: 0px;
+        font-size: 13px;
+        line-height: 20px;
+    }
+    
+    .logo {
+        width: 80px;
+        margin-bottom: 30px;
+    }
+    
+    .row {
+        width: 85%;
+        margin: auto;
+        color: $white;
+        font-size: 15px;
+        display: flex;
+        flex-wrap: wrap;
+        align-items: flex-start;
+        justify-content: space-between;
+    }
+    
+    .col {
+        flex-basis: 25%;
+        padding: 10px;
+    }
+    
+    .col:nth-child(2), .col:nth-child(3) {
+        flex-basis: 15%;
+    }
+    
+    .col h3 {
+        width: fit-content;
+        margin-bottom: 40px;
+        position: relative;
+    }
+    
+    .email-id {
+        width: fit-content;
+        border-bottom: 1px solid #ccc;
+        margin: 20px 0;
+    }
+    
+    ul li {
+        list-style: none;
+        margin-bottom: 12px;
+    }
+    
+    ul li a {
+        text-decoration: none;
+        color: #fff;
+    }
+    
+    form {
+        padding-bottom: 15px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        border-bottom: 1px solid #ccc;
+        margin-bottom: 50px;
+    }
+    
+    form .fa-solid {
+        font-size: 18px;
+        margin-right: 10px;
+    }
+    
+    form input {
+        width: 100%;
+        background: transparent;
+        color: #ccc;
+        border: 0;
+        outline: none;
+    }
+    
+    form button {
+        background: transparent;
+        border: 0;
+        outline: none;
+        cursor: pointer;
+    }
+    
+    form button .fas {
+        font-size: 16px;
+        color: #ccc;
+    }
+    
+    .social-icons .fa-brands {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        text-align: center;
+        line-height: 40px;
+        font-size: 20px;
+        color: #000;
+        background: #fff;
+        margin-right: 15px;
+        cursor: pointer;
+    }
+    
+    hr {
+        width: 90%;
+        border: 0;
+        border-bottom: 1px solid #ccc;
+        margin: 20px auto;
+    }
+    
+    .copyright {
+        text-align: center;
+        color: $white;
+        font-size: 12px;
+    }
+    
+    .underline {
+        width: 100%;
+        height: 5px;
+        background: #767676;
+        border-radius: 3px;
+        position: absolute;
+        top: 25px;
+        left: 0;
+        overflow: hidden;
+    }
+    
+    .underline span {
+        width: 15px;
+        height: 100%;
+        background: #fff;
+        border-radius: 3px;
+        position: absolute;
+        top: 0;
+        left: 10px;
+        animation: moving 2s linear infinite;
+    }
+    
+    @keyframes moving {
+        0% {
+            left: -20px;
+        }
+        100% {
+            left: 100%;
+        }
+    }
+    
+    @media (max-width: 700px) {
+        footer {
+            bottom: unset;
+        }
+        .col {
+            flex-basis: 25%;
+        }
+        .col:nth-child(2), .col:nth-child(3) {
+            flex-basis: 15%;
+        }
+    }
+
+/* =======================================  END: FOOTER SECTION ============================================ */
+
+
+/* =======================================  START: MEDIA QUERIES =========================================== */
+
+/* =======================================  END: MEDIA QUERIES ============================================= */

@@ -1,0 +1,943 @@
+
+/* 
+
+    CSS TABLE OF CONTENTS
+
+    1.0 - Variables
+    2.0 - Resets
+    3.0 - Colors: attributes
+
+
+/* =======================================  START: COMPONENTS  ================================================= */
+
+    *,
+    *::before,
+    *::after {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        outline: none;
+        border: none;
+        text-decoration: none;
+        transition: all .2s linear;
+    }
+
+    // Colors
+    $blue: #29d9d5;
+    $black: #111;
+    $white: #fff;
+    $light-color: rgb(231, 231, 231);
+    $bg-color: rgba(0, 0, 0, 0.795);
+    $black-bg: rgba(39, 38, 38, 0.543);
+    $border: .2rem solid $blue;
+
+
+    @mixin grid($val) {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax($val, 1fr));
+        gap: 1.5rem;
+    }
+
+    html {
+        font-size: 62.5%;
+        overflow-x: hidden;
+        scroll-behavior: smooth;
+        scroll-padding-top: 9rem;
+        font-family: 'Poppins', sans-serif;
+
+        &::-webkit-scrollbar {
+            width: 1rem;
+        }
+
+        &::-webkit-scrollbar-track {
+            background: $black-bg;
+        }
+
+        &::-webkit-scrollbar-thumb {
+            background: $blue;
+        }
+    }
+
+    a {
+        text-decoration: none;
+    }
+
+    ul {
+        list-style: none;
+    }
+
+    section {
+        padding: 10rem 4%;
+    }
+
+    body {
+        background: #000;
+        overflow-x: hidden;
+    }
+
+    .heading {
+        text-align: center;
+        margin-bottom: 2rem;
+
+        span {
+            color: $blue;
+            font-size: 2rem;
+        }
+
+        h1 {
+            font-size: 4rem;
+            color: $white;
+        }
+    }
+
+    .btn {
+        margin-top: 1rem;
+        display: inline-block;
+        padding: 1rem 3rem;
+        font-size: 1.7rem;
+        color: $blue;
+        border: $border;
+        border-radius: 5rem;
+        cursor: pointer;
+        background: none;
+
+        &:hover {
+            background: $blue;
+            color: $black;
+        }
+    }
+
+
+/* =======================================  END: COMPONENTS  ================================================== */
+
+/* =======================================  START: HEADER SECTION ============================================= */
+
+    .header {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        display: -ms-flexbox;
+        -ms-flex-align: center;
+        -ms-flex-pack: justify;
+        width: 100%;
+    }
+    
+    .container {
+        width: 100%;
+        max-width: 100%;
+        margin: 0 auto;
+        padding: 0 1.5rem;
+    }
+    
+    .menu-icons {
+        color: #eee;
+        font-size: 4rem;
+        position: absolute;
+        top: 50%;
+        right: 2rem;
+        transform: translateY(-50%);
+        cursor: pointer;
+        z-index: 1500;
+        display: none;
+    }
+    
+    nav {
+        display: flex;
+        align-items: center;
+        width: 100%;
+        height: 8rem;
+        border-bottom: 1px solid rgba(255, 255, 255, .1);
+    }
+    
+    .header-logo {
+        width: 5rem;
+        height: 5rem;
+        background-color: #07baeb;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 110%;
+        margin-right: 5rem;
+    }
+    
+    .nav-list {
+        display: flex;
+        width: 100%;
+        align-items: center;
+    }
+    
+    .nav-list li {
+        line-height: 8rem;
+        position: relative;
+    }
+    
+    .sub-menu li {
+        line-height: 4rem;
+    }
+    
+    .nav-list a {
+        display: block;
+        color: #eee;
+        padding: 0 1.5rem;
+        font-size: 1.4rem;
+        text-transform: uppercase;
+        transition: color 650ms;
+    }
+    
+    .nav-list a:hover {
+        color: #07dceb;
+    }
+    
+    .sub-menu {
+        width: 20rem;
+        display: block;
+        position: absolute;
+        border-top: 3px solid #07dceb;
+        background-color: #0b0a0a;
+        z-index: 100;
+        top: 16rem;
+        opacity: 0;
+        visibility: hidden;
+        transition: all 650ms ease;
+    }
+    
+    .sub-menu::before {
+        content: "";
+        position: absolute;
+        top: -2.5rem;
+        left: 3rem;
+        border: 1.2rem solid transparent;
+        border-bottom-color: #07dceb;
+    }
+    
+    .sub-menu .sub-menu::before {
+        top: .9rem;
+        left: -2.5rem;
+        border: 1.2rem solid transparent;
+        border-right-color: #07dceb;
+    }
+    
+    .sub-menu .sub-menu {
+        border-top: none;
+        border-left: 3px solid #07dceb;
+        top: 0;
+        left: 100%;
+    }
+    
+    .nav-list li:hover>.sub-menu {
+        top: 8rem;
+        opacity: 1;
+        visibility: visible;
+        max-height: initial;
+    }
+    
+    .sub-menu li:hover>.sub-menu {
+        top: 0;
+        left: 100%;
+    }
+    
+    li.move-right {
+        margin: auto 0 auto auto;
+        line-height: initial;
+    }
+    
+    @media screen and (max-width: 850px) {
+        .nav-list {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 100vh;
+            flex-direction: column;
+            align-items: initial;
+            display: none;
+            background-color: #000000e2;
+            z-index: 1000;
+            overflow-y: scroll;
+        }
+    
+        .nav-list>li {
+            line-height: 6rem;
+        }
+    
+        .sub-menu {
+            position: initial;
+            border: 3px solid transparent;
+            border-left-color: #1cb5c0;
+            margin-left: 1rem;
+            max-height: 0;
+        }
+    
+        .sub-menu::before {
+            display: none;
+        }
+    
+        .nav-list li:hover>.sub-menu {
+            opacity: 1;
+            visibility: visible;
+            max-height: initial;
+        }
+    
+        li.move-right {
+            margin: 0 auto 0 0;
+            line-height: initial;
+        }
+    
+        .menu-icons {
+            display: block;
+        }
+    
+        .menu-icons .fa-x {
+            display: block;
+        }
+    
+        .menu-icons .fa-x {
+            display: none;
+        }
+    
+        nav.active .fa-x {
+            display: block;
+        }
+    
+        nav.active .fa-bars {
+            display: none;
+        }
+    
+        nav.active .nav-list {
+            display: flex;
+        }
+    }
+
+/* =======================================  END: HEADER SECTION ============================================== */
+
+/* =======================================  START: WAVE SECTION ================================================== */
+
+    .front-background {
+        position: relative;
+        height: 100vh;
+        background: url(img/vitruvian-man.jpg) no-repeat center / cover;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+    }
+
+    h1 {
+        font-size: 48px;
+        font-weight: bold;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+        background: #ffffff69;
+        padding: 10px 20px;
+        box-shadow: 0 0 40px #000;
+        border-radius: 5px;
+    }
+
+    .waves {
+        position: absolute;
+        width: 100%;
+        bottom: 0;
+        min-height: 100px;
+        max-height: 160px;
+    }
+
+    .wave use {
+        animation: moveForever 26s cubic-bezier(.55, .5, .45, .5) infinite;
+    }
+
+    @keyframes moveForever {
+        0% {
+            transform: translate3d(-90px, 0, 0);
+        }
+
+        100% {
+            transform: translate3d(85px, 0, 0);
+        }
+    }
+
+    .wave use:nth-child(1) {
+        animation-delay: -2s;
+        animation-duration: 7s;
+    }
+
+    .wave use:nth-child(2) {
+        animation-delay: -2s;
+        animation-duration: 7s;
+    }
+
+    .wave use:nth-child(3) {
+        animation-delay: -2s;
+        animation-duration: 7s;
+    }
+
+    .wave use:nth-child(4) {
+        animation-delay: -2s;
+        animation-duration: 7s;
+    }
+
+    main section {
+        background: rgb(0, 0, 0);
+        padding: 100px;
+        color: rgb(255, 255, 255);
+    }
+
+    h2 {
+        text-align: center;
+        padding: 40px 0;
+        font-size: 32px;
+    }
+
+    p {
+        font-size: 13px;
+        letter-spacing: 1px;
+    }
+/* =======================================  END: WAVE SECTION ================================================== */
+
+/* =======================================  START: RESEARCH SECTION ============================================ */
+    
+
+    .Professor-Thesis {
+        background: #000;
+        position: relative;
+        width: 100%;
+        padding: 50px;
+    }
+    .circle {
+        position: relative;
+        overflow: hidden;
+    }
+
+    .circle img {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+    .circle.circle1 {
+        width: 400px;
+        height: 400px;
+        float: left;
+        border-radius: 50%;
+        margin: 20px;
+        shape-outside: circle();
+    }
+
+    .circle.circle2 {
+        width: 200px;
+        height: 200px;
+        float: right;
+        border-radius: 50%;
+        margin: 20px;
+        shape-outside: circle();
+    }
+
+    section h2 {
+        color: #fff;
+        font-size: 6.5em;
+    }
+
+    section p {
+        color: #fff;
+    }
+
+    .btn-main {
+        margin: 2rem 83px;
+        display: inline-flex;
+        text-align: center;
+        align-items: center;
+        justify-content: center;
+        padding: 1rem 2rem;
+        font-size: 1.7rem;
+        color: #29d9d5;
+        border: 0.2rem solid #29d9d5;
+        border-radius: 5rem;
+        cursor: pointer;
+        background: none;
+
+        &:hover {
+            background: $blue;
+            color: $black;
+        }
+    }
+
+    @media (max-width: 1024px) {
+        .Photo-Responsive {
+            width: 100%;
+            max-width: 400px;
+            height: auto;
+        }
+    }
+
+
+
+/* =======================================  END: RESEARCH SECTION ============================================ */
+
+/* =======================================  START: FACULTY SECTION ============================================ */
+
+    .faculty {
+        margin: 50px auto 100px;
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+        grid-gap: 50px;
+    }
+
+    .faculty .faculty-card {
+        position: relative;
+        width: 350px;
+        margin: 0 auto;
+        background: #333;
+        padding: 20px;
+        box-sizing: border-box;
+        text-align: center;
+        box-shadow: 0 10px 40px rgba(0, 0, 0, .5);
+        overflow: hidden;
+        border-radius: 10px;
+    }
+
+    .faculty .faculty-card .faculty-layer {
+        position: absolute;
+        top: 570px;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(#1da2ca, #2b66bee0, #3d0f52);
+        z-index: 1;
+        transition: 0.5s;
+    } 
+
+    .faculty .faculty-card:hover .faculty-layer {
+        top: 0;
+    }
+
+    .faculty .faculty-card .faculty-content {
+        position: relative;
+        z-index: 2;
+    }
+
+    .faculty .faculty-card .faculty-content p {
+        margin-bottom: 15px;
+        font-size: 18px;
+        line-height: 24px;
+        color: #fff;
+    }
+
+    .faculty .faculty-card .faculty-content .faculty-image {
+        width: 185px;
+        height: 185px;
+        margin: 0 auto;
+        border-radius: 50%;
+        overflow: hidden;
+        border: 4px solid #fff;
+        box-shadow: 0 10px 20px rgba(0, 0, 0, .2);
+    }
+
+    .faculty .faculty-card .faculty-content .faculty-details h2 {
+        font-size: 18px; 
+        color: #fff;
+    }
+
+    .faculty .faculty-card .faculty-content .faculty-details h2 span {
+        color: #03a9f4;
+        font-size: 14px;
+        transition: 0.5s;
+    }
+
+    .faculty .faculty-card:hover .faculty-content .faculty-details h2 span {
+        color: #fff;
+    }
+
+    .faculty-button {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .faculty-button .span {
+        margin-top: 1rem;
+        display: inline-block;
+        padding: 1rem 3rem;
+        font-size: 1.7rem;
+        color: #29d9d5;
+        border: 0.2rem solid #29d9d5;
+        border-radius: 5rem;
+        cursor: pointer;
+        background: none;
+        
+
+        &:hover {
+            background: $blue;
+            color: $black;
+        }
+    }
+    // .faculty-container {
+    //     background: #000;
+    //     position: relative;
+    //     display: flex;
+    //     justify-content: center;
+    //     align-items: center;
+    //     flex-wrap: wrap;
+    //     padding: 130px;
+    // }
+
+    // .btn-faculty {
+    //     margin: 0rem 285px;
+    //     display: inline-block;
+    //     padding: 1rem 2rem;
+    //     font-size: 1.7rem;
+    //     color: $blue;
+    //     border: $border;
+    //     border-radius: 5rem;
+    //     cursor: pointer;
+    //     background: none;
+
+    //     &:hover {
+    //         background: $blue;
+    //         color: $black;
+    //     }
+    // }
+
+    // .faculty-container .faculty-card {
+    //     position: relative;
+    //     max-width: 300px;
+    //     border-radius: 10px;
+    //     height: 220px;
+    //     background: #fff;
+    //     margin: 70px 25px;
+    //     padding: 70px 15px;
+    //     display: flex;
+    //     flex-direction: column;
+    //     box-shadow: 0 5px 202px rgba(0,0,0,0.5);
+    //     transition: 0.3s ease-in-out;
+    // }
+
+    // .faculty-container .faculty-card:hover {
+    //     height: 420px;
+    // }
+
+    // .faculty-container .faculty-card .faculty-imgBx {
+    //     position: relative;
+    //     width: 250px;
+    //     height: 250px;
+    //     top: -60px;
+    //     left: 10px;
+    //     box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+    // }
+
+    // .faculty-container .faculty-card .faculty-imgBx img {
+    //     max-width: 100%;
+    //     border-radius: 4px;
+    // }
+
+    // .faculty-container .faculty-card .faculty-content {
+    //     position: relative;
+    //     margin-top: -140px;
+    //     padding: 10px 15px;
+    //     text-align: center;
+    //     color: #111;
+    //     visibility: hidden;
+    //     opacity: 0;
+    //     transition: 0.3s ease-in-out;
+    // }
+
+    // .faculty-container .faculty-card:hover .faculty-content {
+    //     visibility: visible;
+    //     opacity: 1;
+    //     margin-top: -40px;
+    //     transition-delay: 0.3s;
+    // }
+
+    // .faculty-h2 {
+    //     color: #000;
+    // }
+
+    // .falculty-p {
+    //     color: #000;
+    // }
+/* =======================================  END: FACULTY SECTION ============================================ */
+
+/* =======================================  START: STUDENT SECTION ============================================ */
+    .student {
+        display: flex;
+        background: #000;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 2rem;
+        margin-top: 0rem;
+
+        .photo-container {
+            flex: 1 1 2rem;
+            padding-bottom: 70px;
+
+            img {
+                margin-left: 20px;
+                border-radius: 15rem;
+                width: 100%;
+            }
+        }
+
+        .content {
+            flex: 1 1 42rem;
+            margin-bottom: 5rem;
+            padding-left: 40px;
+
+            .span {
+                margin-top: 1rem;
+                display: inline-block;
+                padding: 1rem 3rem;
+                font-size: 1.7rem;
+                color: $blue;
+                border: $border;
+                border-radius: 5rem;
+                cursor: pointer;
+                background: none;
+                
+                &:hover {
+                    background: $blue;
+                    color: black;
+                }
+            }
+
+            h3 {
+                color: $white;
+                font-size: 4rem;
+                margin-top: .5rem;
+            }
+
+            p {
+                padding: 1rem 0;
+                font-size: 1.4rem;
+                color: $light-color;
+                line-height: 2;
+            }
+
+            .btn {
+                margin: 2rem 1px;
+                display: inline-block;
+                padding: 1rem 2rem;
+                font-size: 1.7rem;
+                color: #29d9d5;
+                border: 0.2rem solid #29d9d5;
+                border-radius: 5rem;
+                cursor: pointer;
+                background: none;
+            }
+        }
+    }
+/* =======================================  END: STUDENT SECTION ============================================ */
+
+/* ======================================= START: REGISTER OPTION =========================================== */
+    .registerForm {
+        background:rgb(0, 0, 0);
+        display: grid;
+        text-align: center;
+        align-items: center;
+        justify-content: center;
+
+        h1 {
+            text-align: center;
+            padding: 50px 0;
+            margin-top: 0px;
+            color: white;
+            background: black;
+            font-size: 32px;
+        }
+
+        .btn-register {
+            margin: 1rem;
+            margin-bottom: 100px;
+            display: inline-block;
+            padding: 1rem 2rem;
+            font-size: 1.7rem;
+            color: #29d9d5;
+            border: 0.2rem solid #29d9d5;
+            border-radius: 5rem;
+            cursor: pointer;
+            background: none;
+
+            &:hover {
+                background: $blue;
+                color: black;
+            }
+        }
+    }
+/* ======================================= END: REGISTER OPTION =========================================== */
+
+/* =======================================  START: FOOTER SECTION ========================================== */
+
+    .footer {
+        width: 100%;
+        position: relative;
+        bottom: 0;
+        background: linear-gradient(to right, #000, #07304d);
+        color: #fff;
+        padding: 100px 0 30px;
+        border-top-left-radius: 0px;
+        font-size: 13px;
+        line-height: 20px;
+    }
+
+    .logo {
+        width: 80px;
+        margin-bottom: 30px;
+    }
+
+    .row {
+        width: 85%;
+        margin: auto;
+        color: $white;
+        font-size: 15px;
+        display: flex;
+        flex-wrap: wrap;
+        align-items: flex-start;
+        justify-content: space-between;
+    }
+
+    .col {
+        flex-basis: 25%;
+        padding: 10px;
+    }
+
+    .col:nth-child(2),
+    .col:nth-child(3) {
+        flex-basis: 15%;
+    }
+
+    .col h3 {
+        width: fit-content;
+        margin-bottom: 40px;
+        position: relative;
+    }
+
+    .email-id {
+        width: fit-content;
+        border-bottom: 1px solid #ccc;
+        margin: 20px 0;
+    }
+
+    ul li {
+        list-style: none;
+        margin-bottom: 12px;
+    }
+
+    ul li a {
+        text-decoration: none;
+        color: #fff;
+    }
+
+    form {
+        padding-bottom: 15px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        border-bottom: 1px solid #ccc;
+        margin-bottom: 50px;
+    }
+
+    form .fa-solid {
+        font-size: 18px;
+        margin-right: 10px;
+    }
+
+    form input {
+        width: 100%;
+        background: transparent;
+        color: #ccc;
+        border: 0;
+        outline: none;
+    }
+
+    form button {
+        background: transparent;
+        border: 0;
+        outline: none;
+        cursor: pointer;
+    }
+
+    form button .fas {
+        font-size: 16px;
+        color: #ccc;
+    }
+
+    .social-icons .fa-brands {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        text-align: center;
+        line-height: 40px;
+        font-size: 20px;
+        color: #000;
+        background: #fff;
+        margin-right: 15px;
+        cursor: pointer;
+    }
+
+    hr {
+        width: 90%;
+        border: 0;
+        border-bottom: 1px solid #ccc;
+        margin: 20px auto;
+    }
+
+    .copyright {
+        text-align: center;
+        color: $white;
+        font-size: 12px;
+    }
+
+    .underline {
+        width: 100%;
+        height: 5px;
+        background: #767676;
+        border-radius: 3px;
+        position: absolute;
+        top: 25px;
+        left: 0;
+        overflow: hidden;
+    }
+
+    .underline span {
+        width: 15px;
+        height: 100%;
+        background: #fff;
+        border-radius: 3px;
+        position: absolute;
+        top: 0;
+        left: 10px;
+        animation: moving 2s linear infinite;
+    }
+
+    @keyframes moving {
+        0% {
+            left: -20px;
+        }
+
+        100% {
+            left: 100%;
+        }
+    }
+
+    @media (max-width: 700px) {
+        footer {
+            bottom: unset;
+        }
+
+        .col {
+            flex-basis: 25%;
+        }
+
+        .col:nth-child(2),
+        .col:nth-child(3) {
+            flex-basis: 15%;
+        }
+    }
+
+/* =======================================  END: FOOTER SECTION ============================================= */
+    
+    
+/* =======================================  START: MEDIA QUERIES ============================================= */
+
+
+/* =======================================  END: MEDIA QUERIES ============================================== */

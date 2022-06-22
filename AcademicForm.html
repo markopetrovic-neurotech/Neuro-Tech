@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="AcademicForm.css">
+    <script src="https://kit.fontawesome.com/1ce9b4e8b5.js" crossorigin="anonymous"></script>
+    <title>Neuro-Tech</title>
+</head>
+<body>
+
+    <!-- Header section starts -->
+    <header class="header">
+        <div class="container">
+            <nav>
+                <div class="menu-icons">
+                    <i class="icon fa-solid fa-bars"></i>
+                    <i class="icon fa-solid fa-x"></i>
+                </div>
+                <a href="index.html" class="header-logo">
+                    <img src="img/Logo1.png" width="45" height="45" alt="Company Logo">
+                </a>
+                <ul class="nav-list">
+                    <li>
+                        <a href="index.html">Home</a>
+                    </li>
+                    <li>
+                        <a href="about.html">About
+                            <i class="fa-solid fa-caret-down"></i>
+                        </a>
+                        <ul class="sub-menu">
+                            <li>
+                                <a href="about.html">Mission | Vision</a>
+                            </li>
+                            <li>
+                                <a href="#">History</a>
+                            </li>
+                            <li>
+                                <a href="about.html#team">Team</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="Academia.html">Academia
+                            <i class="fa-solid fa-caret-down"></i>
+                        </a>
+                        <ul class="sub-menu">
+                            <li>
+                                <a href="Academia.html#ImpactResearch">Discoveries</a>
+                            </li>
+                            <li>
+                                <a href="Academia.html#FacultyMembers">Faculty
+                                    <i class="fa-solid fa-caret-down"></i>
+                                </a>
+                                <ul class="sub-menu">
+                                    <li>
+                                        <a href="#">Members</a>
+                                    </li>
+                                    <li>
+                                        <a href="#">Research</a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li>
+                                <a href="Academia.html#student">Student
+                                    <i class="fa-solid fa-caret-down"></i>
+                                </a>
+                                <ul class="sub-menu">
+                                    <li>
+                                        <a href="#">Members</a>
+                                    </li>
+                                    <li>
+                                        <a href="#">Research</a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li>
+                                <a href="AcademicForm.html">Register</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#">Product
+                            <i class="fa-solid fa-caret-down"></i>
+                        </a>
+                        <ul class="sub-menu">
+                            <li>
+                                <a href="UdCode.html">UdCode
+                                    <i class="fa-solid fa-caret-down"></i>
+                                </a>
+                                <ul class="sub-menu">
+                                    <li>
+                                        <a href="#">About</a>
+                                    </li>
+                                    <li>
+                                        <a href="#">Free trial</a>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="contact.html">Contact</a>
+                    </li>
+                    <!-- <li class="move-right btn">
+                                <a href="#">Sign In</a>
+                            </li> -->
+                </ul>
+            </nav>
+        </div>
+    </header>
+    <!-- Header section Ends -->
+
+    <div class="form-container">
+        <form id="Form1">
+            <h3>GET INVOLVED</h3>
+            <input type="text" placeholder="Name" required>
+            <input type="text" placeholder="Email" required>
+            <input type="text" placeholder="Phone#" optional>
+            <select name="hearAboutUs" id="hearAboutUs">
+                <option value="null" selected="true" disabled="disabled">How did you hear about us?</option>
+                <option value="Website">Website</option>
+                <option value="FGCU" onclick="text(FGCU-Personnel/Student)">FGCU-personnel/student</option>
+                <option value="SocialMedia">Social Media</option>
+                <option value="FGCU-EagleLink">FGCU Eagle-Link</option>
+                <option value="LinkedIn">LinkedIn</option>
+                <option value="GoogleSearch">Google Search</option>
+                <option value="Employee">Neuro-Tech Employee</option>
+            </select>
+            <div class="input-group" id="Reference">
+                <input class="input--style-4" type="text" name="ref" id="ref" placeholder="Reference Name"/>
+            </div>
+
+            <div class="form-btn-box">
+                <button type="button" id="Next1">Next</button>
+            </div>
+        </form>
+    
+        <form id="Form2">
+            <h3>ACADEMIC</h3>
+            <input type="text" placeholder="Institution" required>
+            <!-- Input buttons that toggles (show/hide) the UIN# for students ONLY -->
+            <input type="radio" name="type" value="Faculty" onclick="text(1)"/> Faculty <br>
+            <input type="radio" name="type" value="Student" onclick="text(0)"/> Student <br>
+            <!-- Input Field: For students to enter their UIN# -->
+            <div class="col-2" style="text-align:center">
+                <div class="input-group" id="selectCandidate">
+                    <input class="input--style-4" type="text" name="uino" id="uino" placeholder="Enter UIN"/>
+                </div>
+            </div>
+            <select nam="fieldOfStudy" id="fieldOfStudy">
+                <option value="null" selected="true" disabled="disabled">Choose field of studies</option>
+                <option value="Neuroscience">Neuroscience</option>
+                <option value="Psychology">Psychology</option>
+                <option value="Software">Software engineering</option>
+                <option value="Physics">Physics</option>
+                <option value="Mathematics">Mathematics</option>
+                <option value="Behavior">Behavior Science</option>
+                <option value="Mechanical">Mechanical engineering</option>
+                <option value="Biomedical">Biomedical engineering</option>
+                <option value="Electrical">Electrical engineering</option>
+                <option value="Biochemistry">Biochemistry</option>
+                <option value="Biology">Biology</option>
+                <option value="Biotechnology">Biotechnology</option>
+                <option value="Chemistry">Chemistry</option>
+                <option value="Entrepeneurship">Entrepeneurship</option>
+                <option value="Accounting">Accounting</option>
+                <option value="Economics">Economics</option>
+                <option value="Finance">Finance</option>
+                <option value="Marketing">Marketing</option>
+                <option value="SupplyChain">Supply Chain Management</option>
+                <option value="ClinicalLab">Clinical Laboratory Science</option>
+                <option value="Nursing">Nursing</option>
+                <option value="Bioengineering">Bioengineering</option>
+                <option value="DigitalMedia">Digital Media Design</option>
+                <option value="Mechatronics">Mechatronics</option>
+            </select>
+
+            <div class="form-btn-box">
+                <button type="button" id="Back1">Back</button>
+                <button type="button" id="Next2">Next</button>
+            </div>
+        </form>
+    
+        <form id="Form3">
+            <h3>HOW CAN WE HELP YOU?</h3>
+                <textarea id="msg" cols="37" rows="15" placeholder="Enter message here..."></textarea>
+            <div class="form-btn-box">
+                <button type="button" id="Back2">Back</button>
+                <button type="Submit">Submit</button>
+            </div>
+        </form>
+        <div class="step-row">
+            <div id="progress"></div>
+            <div class="step-col"><small>Step 1</small></div>
+            <div class="step-col"><small>Step 2</small></div>
+            <div class="step-col"><small>Step 3</small></div>
+        </div>
+    </div>
+    </div>
+
+    <!-- Select Category of Contact -->
+    <script>
+        let usersSection = document.querySelector(".users-section");
+        let isShow = true;
+
+        function showHideUsers(){
+            if(isShow){
+                usersSection.style.display = "none";
+                isShow = false;
+            } 
+            else {
+                usersSection.style.display = "block";
+                isShow = true;
+            }
+        }
+    </script>
+
+    <!-- Behavior of the form in general -->
+    <script>
+
+        var Form1 = document.getElementById("Form1");
+        var Form2 = document.getElementById("Form2");
+        var Form3 = document.getElementById("Form3");
+
+        var Next1 = document.getElementById("Next1");
+        var Next2 = document.getElementById("Next2");
+        var Back1 = document.getElementById("Back1");
+        var Back2 = document.getElementById("Back2");
+
+        var progress = document.getElementById("progress");
+
+        Next1.onclick = function() {
+            Form1.style.left = "-450px";
+            Form2.style.left = "40px";
+            progress.style.width = "240px";
+        }
+
+        Back1.onclick = function() {
+            Form1.style.left = "40px";
+            Form2.style.left = "450px";
+            progress.style.width = "120px";
+        }
+
+        Next2.onclick = function() {
+            Form2.style.left = "-450px";
+            Form3.style.left = "40px";
+            progress.style.width = "360px";
+        }
+
+        Back2.onclick = function() {
+            Form2.style.left = "40px";
+            Form3.style.left = "450px";
+            progress.style.width = "240px";
+        }
+    </script>
+
+    <!-- Form Academic Step 2 field: toggles (show/hide) the UIN# for students ONLY -->
+    <script>
+        function text(x) {
+            if(x == 0) document.getElementById("selectCandidate").style.display="block";
+            else document.getElementById("selectCandidate").style.display="none";
+            return;
+        }
+    </script>
+    <script src="js/script.js"></script>
+
+</body>
+</html>

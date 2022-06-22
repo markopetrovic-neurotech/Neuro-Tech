@@ -1,0 +1,491 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,300;0,400;0,600;1,400&display=swap');
+
+/* 
+
+    CSS TABLE OF CONTENTS
+
+    1.0 - Variables
+    2.0 - Resets
+    3.0 - Colors: attributes
+
+
+/* =======================================  START: COMPONENTS  ================================================= */
+
+    *,
+    *::before,
+    *::after {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        outline: none;
+        border: none;
+        text-decoration: none;
+        transition: all .2s linear;
+    }
+
+    // Colors
+    $blue: #29d9d5;
+    $black: #111;
+    $white: #fff;
+    $light-color: rgb(231, 231, 231);
+    $bg-color: rgba(0, 0, 0, 0.795);
+    $black-bg: rgba(39, 38, 38, 0.543);
+    $border: .2rem solid $blue;
+
+
+    @mixin grid($val) {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax($val, 1fr));
+        gap: 1.5rem;
+    }
+
+    html {
+        font-size: 62.5%;
+        overflow-x: hidden;
+        scroll-behavior: smooth;
+        scroll-padding-top: 9rem;
+        font-family: 'Poppins', sans-serif;
+
+        &::-webkit-scrollbar {
+            width: 1rem;
+        }
+
+        &::-webkit-scrollbar-track {
+            background: $black-bg;
+        }
+
+        &::-webkit-scrollbar-thumb {
+            background: $blue;
+        }
+    }
+
+    a {
+        text-decoration: none;
+    }
+
+    u {
+        text-decoration: underline;
+        color: blue;
+        transition: 0.5s;
+    }
+
+    ul {
+        list-style: none;
+    }
+
+    section {
+        padding: 10rem 4%;
+    }
+
+    body {
+        background: #000;
+        overflow-x: hidden;
+    }
+
+    .heading {
+        text-align: center;
+        margin-bottom: 2rem;
+
+        span {
+            color: $blue;
+            font-size: 2rem;
+        }
+
+        h1 {
+            font-size: 4rem;
+            color: $white;
+        }
+    }
+
+    .btn {
+        margin-top: 1rem;
+        display: inline-block;
+        padding: 1rem 3rem;
+        font-size: 1.7rem;
+        color: $blue;
+        border: $border;
+        border-radius: 5rem;
+        cursor: pointer;
+        background: none;
+
+        &:hover {
+            background: $blue;
+            color: $black;
+        }
+    }
+
+
+/* =======================================  END: COMPONENTS  ================================================== */
+
+/* =======================================  START: HEADER SECTION ============================================= */
+
+    .header {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        display: -ms-flexbox;
+        -ms-flex-align: center;
+        -ms-flex-pack: justify;
+        width: 100%;
+    }
+
+    .container {
+        width: 100%;
+        max-width: 100%;
+        margin: 0 auto;
+        padding: 0 1.5rem;
+    }
+
+    .menu-icons {
+        color: #eee;
+        font-size: 4rem;
+        position: absolute;
+        top: 50%;
+        right: 2rem;
+        transform: translateY(-50%);
+        cursor: pointer;
+        z-index: 1500;
+        display: none;
+    }
+
+    nav {
+        display: flex;
+        align-items: center;
+        width: 100%;
+        height: 8rem;
+        border-bottom: 1px solid rgba(255, 255, 255, .1);
+    }
+
+    .header-logo {
+        width: 5rem;
+        height: 5rem;
+        background-color: #07baeb;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 110%;
+        margin-right: 5rem;
+    }
+
+    .nav-list {
+        display: flex;
+        width: 100%;
+        align-items: center;
+    }
+
+    .nav-list li {
+        line-height: 8rem;
+        position: relative;
+    }
+
+    .sub-menu li {
+        line-height: 4rem;
+    }
+
+    .nav-list a {
+        display: block;
+        color: #eee;
+        padding: 0 1.5rem;
+        font-size: 1.4rem;
+        text-transform: uppercase;
+        transition: color 650ms;
+    }
+
+    .nav-list a:hover {
+        color: #07dceb;
+    }
+
+    .sub-menu {
+        width: 20rem;
+        display: block;
+        position: absolute;
+        border-top: 3px solid #07dceb;
+        background-color: #0b0a0a;
+        z-index: 100;
+        top: 16rem;
+        opacity: 0;
+        visibility: hidden;
+        transition: all 650ms ease;
+    }
+
+    .sub-menu::before {
+        content: "";
+        position: absolute;
+        top: -2.5rem;
+        left: 3rem;
+        border: 1.2rem solid transparent;
+        border-bottom-color: #07dceb;
+    }
+
+    .sub-menu .sub-menu::before {
+        top: .9rem;
+        left: -2.5rem;
+        border: 1.2rem solid transparent;
+        border-right-color: #07dceb;
+    }
+
+    .sub-menu .sub-menu {
+        border-top: none;
+        border-left: 3px solid #07dceb;
+        top: 0;
+        left: 100%;
+    }
+
+    .nav-list li:hover>.sub-menu {
+        top: 8rem;
+        opacity: 1;
+        visibility: visible;
+        max-height: initial;
+    }
+
+    .sub-menu li:hover>.sub-menu {
+        top: 0;
+        left: 100%;
+    }
+
+    li.move-right {
+        margin: auto 0 auto auto;
+        line-height: initial;
+    }
+
+    @media screen and (max-width: 850px) {
+        .nav-list {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 100vh;
+            flex-direction: column;
+            align-items: initial;
+            display: none;
+            background-color: #000000e2;
+            z-index: 1000;
+            overflow-y: scroll;
+        }
+
+        .nav-list>li {
+            line-height: 6rem;
+        }
+
+        .sub-menu {
+            position: initial;
+            border: 3px solid transparent;
+            border-left-color: #1cb5c0;
+            margin-left: 1rem;
+            max-height: 0;
+        }
+
+        .sub-menu::before {
+            display: none;
+        }
+
+        .nav-list li:hover>.sub-menu {
+            opacity: 1;
+            visibility: visible;
+            max-height: initial;
+        }
+
+        li.move-right {
+            margin: 0 auto 0 0;
+            line-height: initial;
+        }
+
+        .menu-icons {
+            display: block;
+        }
+
+        .menu-icons .fa-x {
+            display: block;
+        }
+
+        .menu-icons .fa-x {
+            display: none;
+        }
+
+        nav.active .fa-x {
+            display: block;
+        }
+
+        nav.active .fa-bars {
+            display: none;
+        }
+
+        nav.active .nav-list {
+            display: flex;
+        }
+    }
+
+/* =======================================  END: HEADER SECTION ============================================== */
+
+/* ======================================= START: HOME SECTION ================================================== */
+
+    .card {
+        position: relative;
+        width: 90vw;
+        height: 700px;
+        display: -webkit-box;
+        margin: 106px;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-box-pack: start;
+        -ms-flex-pack: start;
+        justify-content: flex-start;
+        -webkit-box-align: center;
+        -ms-flex-align: center;
+        align-items: center;
+        border-radius: 20px;
+        background: #fff;
+    }
+
+    .card img {
+        position: absolute;
+        bottom: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        height: 400px;
+        transition: 0.5s;
+    }
+
+    .card:hover img {
+        left: 80%;
+        height: 550px;
+    }
+
+    .card .content {
+        padding-left: 20px;
+        position: relative;
+        width: 50%;
+        left: 20%;
+        transition: 0.5s;
+        padding: 20px 20px 20px 40px;
+        opacity: 0;
+        visibility: hidden;
+    }
+
+    .card:hover  .content {
+        left: 5%;
+        opacity: 1;
+        visibility: visible;
+    }
+
+    .card .content h2 {
+        color: #000;
+        text-transform: uppercase;
+        font-size: 10em;
+        line-height: 1em;
+    }
+
+    .card .content p {
+        margin: 50% auto 30px;
+        color: #000;
+        font-size: 15px;
+    }
+
+    #UdCode-logo {
+        height: 170px;
+        display: block;
+        position: absolute;
+        left: 470px;
+        top: 0px;
+    }
+
+    .logo-letters1 {
+        position: absolute;
+        top: 0px;
+        left: 5px;
+        font-size: 17px;
+    }
+
+    .logo-letters2 {
+        position: absolute;
+        top: 0px;
+        left: 565px;
+        font-size: 17px;
+    }
+
+    .card .content a {
+        position: relative;
+        display: inline-block;
+        color: #111;
+        padding: 10px 20px;
+        border-radius: 10px;
+        background-color: #fff;
+        margin-top: 25px;
+        text-decoration: none;
+        font-size: 15px;
+    }
+
+    @media (min-width: 1000px) {
+        .card {
+        position: relative;
+            margin: 110px 3px 5px 3px;
+            width: auto;
+            max-width: 1499px;
+            -webkit-transition: 0.5s;
+            transition: 0.5s;
+            -webkit-box-align: start;
+            -ms-flex-align: start;
+            align-items: flex-start;
+        }
+
+        #UdCode-logo {
+        height: 170px;
+            display: block;
+            position: absolute;
+            left: 470px;
+            top: 185px;
+        }
+
+        .logo-letters1 {
+        position: absolute;
+            top: 185px;
+            left: 5px;
+            font-size: 17px;
+        }
+
+        .logo-letters2 {
+        position: absolute;
+            top: 185px;
+            left: 565px;
+            font-size: 17px;
+        }
+    }
+
+    @media (max-width: 991px) {
+
+        .card {
+            position: relative;
+            width: auto;
+            max-width: 600px;
+            transition: 0.5s;
+            align-items: flex-start;
+        }
+
+        .card:hover {
+            height: 600px;
+        }
+
+        .card:hover img {
+            left: 50%;
+            height: 350px;
+        }
+
+        .card .content {
+            width: 100%;
+            left: 0;
+            padding: 40px;
+        }
+    }
+
+    @media (max-width: 420px) {
+
+        .card .content {
+            padding: 30px;
+        }
+
+        .card:hover img {
+            height: 300px;
+        }
+    }
+
+/* ======================================= END: HOME SECTION ================================================== */
